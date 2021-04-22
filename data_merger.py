@@ -35,6 +35,7 @@ def feature_engineering(df):
     df = df.interpolate(method='linear', axis=0).ffill().bfill()
     assert(len(df) == len(timestamps))   
     df['timestamp'] = timestamps
+    return df
 
 def save_to_csv(df):    
     df.to_csv(f"{sys.argv[1]}_merged.csv.zip", index=False, compression='zip')
@@ -42,5 +43,5 @@ def save_to_csv(df):
 if __name__ == '__main__':
     df = open_csv()
     df = drop_problematic_days(df)
-    feature_engineering(df)
+    df = feature_engineering(df)
     save_to_csv(df)
