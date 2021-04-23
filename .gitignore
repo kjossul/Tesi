@@ -1,0 +1,25 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+# user
+
+.idea\*.xml
+.ipynb_checkpoints
+*.xml
+*.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/other.xml
+.idea/Tesi.iml
+.idea/vcs.xml
+101-Site_DKA-WeatherStation.zip
+93-Site_8-Kaneka.zip
+Alice_Springs_2009.zip
+Alice_Springs_2020.zip
