@@ -37,7 +37,7 @@ def feature_engineering(df):
 
 
 def save_to_csv(df, filename):
-    df.to_csv(f"{filename}_merged.csv.zip", index=False, compression='zip')
+    df.to_csv(f"{filename}_merged.csv.zip", compression='zip')
 
 
 if __name__ == '__main__':
