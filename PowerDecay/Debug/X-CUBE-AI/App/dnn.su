@@ -1,0 +1,9 @@
+dnn.c:371:9:dnn_configure_activations	24	static
+dnn.c:402:9:dnn_configure_weights	24	static
+dnn.c:441:9:ai_dnn_get_info	136	static
+dnn.c:488:10:ai_dnn_get_error	16	static
+dnn.c:494:10:ai_dnn_create	24	static
+dnn.c:504:11:ai_dnn_destroy	16	static
+dnn.c:510:9:ai_dnn_init	24	static
+dnn.c:527:8:ai_dnn_run	24	static
+dnn.c:534:8:ai_dnn_forward	16	static

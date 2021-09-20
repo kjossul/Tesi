@@ -1,0 +1,109 @@
+Neural Network Tools for STM32 v1.4.0 (AI tools v5.2.0)
+Created date       : 2021-08-17 19:16:17
+Parameters         : generate --name dnn -m D:/workspace/Tesi/dnn_micro.tflite --type tflite --compression 1 --verbosity 1 --workspace C:\Users\ricca\AppData\Local\Temp\mxAI_workspace12429421001742005470509204600721508 --output C:\Users\ricca\.stm32cubemx
+
+Exec/report summary (generate dur=0.61s err=0)
+------------------------------------------------------------------------------------------------------------------------
+model file         : D:\workspace\Tesi\dnn_micro.tflite
+type               : tflite (tflite) 
+c_name             : dnn
+compression        : None
+quantize           : None
+workspace dir      : C:\Users\ricca\AppData\Local\Temp\mxAI_workspace12429421001742005470509204600721508
+output dir         : C:\Users\ricca\.stm32cubemx
+
+model_name         : dnn_micro
+model_hash         : af491176d38b68e60ba8cf9930fff08d
+input              : flatten_input [72 items, 72 B, ai_i8, scale=0.014191747643053532, zero_point=-28, (1, 12, 6)]
+inputs (total)     : 72 B
+output             : dense_3 [1 items, 4 B, ai_i8, scale=0.01030043326318264, zero_point=-37, (1, 1, 1)]
+outputs (total)    : 1 B
+params #           : 3,425 items (3.54 KiB)
+macc               : 3,360
+weights (ro)       : 3,620 B (3.54 KiB) 
+activations (rw)   : 64 B (64 B) 
+ram (total)        : 137 B (137 B) = 64 + 72 + 1
+
+------------------------------------------------------------------------------------------------------------------------
+id  layer (type)          output shape      param #     connected to             macc           rom                
+------------------------------------------------------------------------------------------------------------------------
+0   flatten_input (Input) (1, 12, 6)                                                                               
+    reshape_0 (Reshape)   (72,)                         flatten_input                                              
+------------------------------------------------------------------------------------------------------------------------
+1   dense_1 (Dense)       (32,)             2,336       reshape_0                2,304          2,432 (i)          
+    nl_1 (Nonlinearity)   (32,)                         dense_1                                                    
+------------------------------------------------------------------------------------------------------------------------
+2   dense_2 (Dense)       (32,)             1,056       nl_1                     1,024          1,152 (i)          
+    nl_2 (Nonlinearity)   (32,)                         dense_2                                                    
+------------------------------------------------------------------------------------------------------------------------
+3   dense_3 (Dense)       (1,)              33          nl_2                     32             36 (i)             
+------------------------------------------------------------------------------------------------------------------------
+dnn_micro p=3425(3.54 KBytes) macc=3360 rom=3.54 KBytes ram=64 B io_ram=73 B
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name         : dnn_micro
+c-name             : dnn
+c-node #           : 3
+c-array #          : 10
+activations size   : 64
+weights size       : 3620
+macc               : 3360
+inputs             : ['flatten_input_output_array']
+outputs            : ['dense_3_output_array']
+
+
+C-Arrays (10)
+------------------------------------------------------------------------------------------------------------------------
+c_id  name (*_array)        item/size           mem-pool     c-type         fmt     comment            
+------------------------------------------------------------------------------------------------------------------------
+0     dense_3_bias          1/4                 weights      const int32_t  int/ss                     
+1     dense_3_weights       32/32               weights      const int8_t   int/ss                     
+2     dense_2_bias          32/128              weights      const int32_t  int/ss                     
+3     dense_2_weights       1024/1024           weights      const int8_t   int/ss                     
+4     dense_1_bias          32/128              weights      const int32_t  int/ss                     
+5     dense_1_weights       2304/2304           weights      const int8_t   int/ss                     
+6     flatten_input_output  72/72               user         int8_t         int/sa  /input             
+7     dense_1_output        32/32               activations  int8_t         int/sa                     
+8     dense_2_output        32/32               activations  int8_t         int/sa                     
+9     dense_3_output        1/4                 user         int8_t         int/sa  /output            
+------------------------------------------------------------------------------------------------------------------------
+
+
+C-Layers (3)
+------------------------------------------------------------------------------------------------------------------------
+c_id  name (*_layer)  id  type   macc        rom         tensors                   shape (array id)                       
+------------------------------------------------------------------------------------------------------------------------
+0     dense_1         1   dense  2304        2432        I: flatten_input_output0  [1, 1, 1, 72] (6)                      
+                                                         W: dense_1_weights                                               
+                                                         W: dense_1_bias                                                  
+                                                         O: dense_1_output         [1, 1, 1, 32] (7)                      
+------------------------------------------------------------------------------------------------------------------------
+1     dense_2         2   dense  1024        1152        I: dense_1_output         [1, 1, 1, 32] (7)                      
+                                                         W: dense_2_weights                                               
+                                                         W: dense_2_bias                                                  
+                                                         O: dense_2_output         [1, 1, 1, 32] (8)                      
+------------------------------------------------------------------------------------------------------------------------
+2     dense_3         3   dense  32          36          I: dense_2_output         [1, 1, 1, 32] (8)                      
+                                                         W: dense_3_weights                                               
+                                                         W: dense_3_bias                                                  
+                                                         O: dense_3_output         [1, 1, 1, 1] (9)                       
+------------------------------------------------------------------------------------------------------------------------
+
+
+ 
+Complexity per-layer - macc=3,360 rom=3,620
+------------------------------------------------------------------------------------------------------------------------
+id      layer (type)          macc                                    rom                                    
+------------------------------------------------------------------------------------------------------------------------
+1       dense_1 (Dense)       |||||||||||||||||||||||||||||||  68.6%  |||||||||||||||||||||||||||||||  67.2% 
+2       dense_2 (Dense)       ||||||||||||||                   30.5%  |||||||||||||||                  31.8% 
+3       dense_3 (Dense)       |                                 1.0%  |                                 1.0% 
+------------------------------------------------------------------------------------------------------------------------
+
+
+Evaluation report (summary)
+---------------------------------------------
+NOT EVALUATED
